@@ -34,7 +34,8 @@ The commands below can be used to interact with the AI. Most are self explanitor
   unpack <packaged board>
     Loads a packaged board from the output of a pack command. The format is a
     list of all the cell's counts starting from the left most (player 2's gate)
-    going counter clockwise.
+    going counter clockwise followed by '-' if the game is in a terminal state,
+    or 1 or 2 depending on the next player to move.
   autoprint [on|off]
     If autoprint is on the board will be printed after each command and turn
     automatically.

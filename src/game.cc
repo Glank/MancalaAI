@@ -84,7 +84,10 @@ void Game::PrintHelp() const {
       << std::endl;
   out << "    list of all the cell's counts starting from the left most (player 2's gate)"
       << std::endl;
-  out << "    going counter clockwise." << std::endl;
+  out << "    going counter clockwise followed by '-' if the game is in a terminal state,"
+      << std::endl;
+  out << "    or 1 or 2 depending on the next player to move."
+      << std::endl;
   out << "  autoprint [on|off]" << std::endl;
   out << "    If autoprint is on the board will be printed after each command and turn"
       << std::endl;
