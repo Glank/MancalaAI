@@ -2,7 +2,9 @@
 A simple AI for the board game Mancala
 
 ## Build Instructions
-Run `make mancala`
+Run `make mancala` to build.
+
+To run all the tests, run `make test`
 
 ## Usage
 To run the AI, just run the binary `./mancala`

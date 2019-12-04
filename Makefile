@@ -3,6 +3,10 @@ CFLAGS = -std=c++11 -Wall -Isrc
 
 all: mancala test_board test_ai test_game
 
+test: test_board test_ai test_game
+	./test_board
+	./test_ai
+	./test_game
 
 mancala: bin/ src/mancala.cc src/ai.h src/board.h bin/ai.o bin/board.o bin/game.o
 	${CMP} -o mancala src/mancala.cc bin/board.o bin/ai.o bin/game.o ${CFLAGS}
