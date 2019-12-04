@@ -1,12 +1,14 @@
 #include "ai.h"
 
+#include <limits>
 #include <vector>
 
 namespace glank {
 namespace mancala {
 
-int MinMax(const Board& board, int depth,
-  Board* bestMove) {
+int MinMax(const Board& board, int depth, Board* bestMove,
+    int min_score_bound=std::numeric_limits<int>::min(),
+    int max_score_bound=std::numeric_limits<int>::max()) {
   if (bestMove == nullptr) {
     throw std::runtime_error(
       "bestMove cannot be null");
@@ -25,10 +27,16 @@ int MinMax(const Board& board, int depth,
     int bestIndex = 0;
     for (int i = 1; i < moves.size(); i++) {
       int score = MinMax(moves[i], depth-1,
-        &(bestNextMoves[(depth-1)*i]));
+        &(bestNextMoves[(depth-1)*i]), min_score_bound, max_score_bound);
       if (score > maxScore) {
         maxScore = score;
         bestIndex = i;
+      }
+      if (score > min_score_bound) {
+        min_score_bound = score;
+      }
+      if (min_score_bound >= max_score_bound) {
+        break;
       }
     }
     bestMove[0] = moves[bestIndex];
@@ -44,10 +52,16 @@ int MinMax(const Board& board, int depth,
     int bestIndex = 0;
     for (int i = 1; i < moves.size(); i++) {
       int score = MinMax(moves[i], depth-1,
-        &(bestNextMoves[(depth-1)*i]));
+        &(bestNextMoves[(depth-1)*i]), min_score_bound, max_score_bound);
       if (score < minScore) {
         minScore = score;
         bestIndex = i;
+      }
+      if (score < max_score_bound) {
+        max_score_bound = score;
+      }
+      if (min_score_bound >= max_score_bound) {
+        break;
       }
     }
     bestMove[0] = moves[bestIndex];

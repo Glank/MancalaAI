@@ -19,7 +19,7 @@ void AIFirstMoveTest() {
   for (const Board& b: thought) {
     std::cout << b.DebugString() << std::endl;
   }
-  */
+  // */
 
   std::stringstream ss;
   ss << "1 to 0 :::1:::" << std::endl;
