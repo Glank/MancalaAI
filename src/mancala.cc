@@ -7,6 +7,7 @@ using namespace std;
 
 int main() {
   Game game(cout);
+  game.RunCommand("p");
   string line = "";
   while(true) {
     getline(cin, line);

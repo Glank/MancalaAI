@@ -188,5 +188,41 @@ bool Board::IsPlayer1Turn() const {
   return player1Turn;
 }
 
+std::string Board::Pack() const {
+  std::stringstream ss;
+  for (int i = 0; i < 14; i++) {
+    ss << cells[i] << " ";
+  }
+  ss << (terminal ? '-' : (player1Turn ? '1' : '2'));
+  return ss.str();
+}
+bool Board::Unpack(const std::string& str, Board* out) {
+  if (out == nullptr) {
+    return false;
+  }
+  std::stringstream ss(str);
+  for (int i = 0; i < 14; i++) {
+    ss >> out->cells[i];
+    if (out->cells[i] < 0 || out->cells[i] > 4*6) {
+      return false;
+    }
+  }
+  std::string stat;
+  ss >> stat;
+  if (stat == "-") {
+    out->terminal = true;
+    out->player1Turn = false;
+  } else if (stat == "1") {
+    out->terminal = false;
+    out->player1Turn = true;
+  } else if (stat == "2") {
+    out->terminal = false;
+    out->player1Turn = false;
+  } else {
+    return false;
+  }
+  return true;
+}
+
 } // namespace mancala
 } // namespace glank

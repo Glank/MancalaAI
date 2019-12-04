@@ -24,6 +24,9 @@ class Board {
   int GetScore() const;
   bool IsPlayer1Turn() const;
   std::string DebugString() const;
+  std::string Pack() const;
+  // returns true on success 
+  static bool Unpack(const std::string& str, Board* out);
  private:
   bool player1Turn;
   bool terminal;

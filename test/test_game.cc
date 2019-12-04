@@ -13,7 +13,13 @@ void GameRunCommandTest() {
 
   std::stringstream ss;
   Game game(ss);
-  game.RunCommand("aimove");
+  //*
+  game.RunCommand("autoai 1 5");
+  game.RunCommand("autoai 1 off");
+  game.RunCommand("autoprint off");
+  game.RunCommand("autoai 2 4");
+  game.RunCommand("autoprint on");
+  game.RunCommand("aimove 3 v");
   game.RunCommand("aimove -1");
   game.RunCommand("aimove 0");
   game.RunCommand("aimove 2");
@@ -27,10 +33,16 @@ void GameRunCommandTest() {
   game.RunCommand("print");
   game.RunCommand("p");
   game.RunCommand("undo");
+  game.RunCommand("undo -1");
+  game.RunCommand("undo 5");
   game.RunCommand("reset");
   game.RunCommand("help");
   game.RunCommand("h");
   game.RunCommand("bla");
+  game.RunCommand("unpack 0 1 2 3 4 5 6 7 8 9 10 11 12 13 1");
+  game.RunCommand("print");
+  // */
+  //std::cout << ss.str() << std::endl;
 }
 
 } // namespace mancala
